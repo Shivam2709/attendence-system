@@ -15,5 +15,5 @@ app.use(morgan("dev"));
 app.use("/api/auth", authRoutes);
 app.use("/api/attendance", attendanceRoutes);
 app.use("/api/tasks", taskRoutes);
-
+app.use("/api/admin", require("./routes/admin.routes"));
 module.exports = app;

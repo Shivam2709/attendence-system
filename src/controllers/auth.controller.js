@@ -22,11 +22,13 @@ exports.signup = async (req, res) => {
       name,
       email,
       password: hashedPassword,
+      role: "user", // explicitly set
     });
 
     res.status(201).json({
       id: user._id,
-      token: generateToken(user._id),
+      role: user.role,
+      token: generateToken(user),
     });
   } catch (error) {
     res.status(500).json({ message: error.message });
@@ -54,7 +56,8 @@ exports.login = async (req, res) => {
 
     res.json({
       id: user._id,
-      token: generateToken(user._id),
+      role: user.role,
+      token: generateToken(user),
     });
   } catch (error) {
     res.status(500).json({ message: error.message });
